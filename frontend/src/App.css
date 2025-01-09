@@ -2,6 +2,8 @@
   font-family: 'NanumSquareR', sans-serif;
 }
 
+
+
 header {
   background-color: var(--red);
   color: var(--white);
@@ -66,6 +68,19 @@ header .nav-bar .btns .btn:hover {
 
 
 
+.page {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  
+  padding-left: 1em;
+  padding-right: 1em;
+
+  min-height: calc(100svh - 3em - 3em);
+}
+
+
+
 footer {
   border-top: 1px solid rgba(0,0,0,.1);
 	bottom: 0;
@@ -103,11 +118,13 @@ footer .btn p{
   font-size: .6em;
 }
 
+
+
 @media (max-width: 768px) {
   header {
     height: 3em;
   }
-  header .nav-bar {
+  header .nav-bar, .page > div {
     width: 100%;
   }
   header .nav-bar .title {
@@ -125,7 +142,7 @@ footer .btn p{
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-  header .nav-bar {
+  header .nav-bar, .page > div {
     width: 768px;
   }
   footer {
@@ -134,7 +151,7 @@ footer .btn p{
 }
 
 @media (min-width: 1025px) {
-  header .nav-bar {
+  header .nav-bar, .page > div {
     width: 1024px;
   }
   footer {

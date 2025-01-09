@@ -17,14 +17,14 @@ function App() {
           </div>
         </header>
 
-        <body>
+        <div className='page'>
           <Routes>
             <Route path="/" element={<Seals />} />
             <Route path="/change" element={<Change />} />
             <Route path="/message" element={<Message />} />
             <Route path="/my-info" element={<MyInfo />} />
           </Routes>
-        </body>
+        </div>
 
         <footer>
           <Links />
