@@ -42,8 +42,8 @@ function Links() {
         <p> 도감 </p>
       </Link>
       <Link className='btn' to='/change'>
-        <span class="material-symbols-outlined"> published_with_changes </span>
-        <p> 교환 </p>
+        <span class="material-symbols-outlined"> store </span>
+        <p> 장터 </p>
       </Link>
       <Link className='btn' to='/message'>
         <span class="material-symbols-outlined"> mail </span>
