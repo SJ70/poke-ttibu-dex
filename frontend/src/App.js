@@ -1,52 +1,63 @@
 import './index.css';
 import './App.css';
+import Change from './pages/change.js';
+import Seals from './pages/seals.js';
+import MyInfo from './pages/myInfo.js';
+import Message from './pages/message.js';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function App() {
   return (
     <div className='app'>
-      
-      <header>
-        <div className='nav-bar'>
-          <p className='title'> 포케띠부덱스 </p>
-          <div className='btns'>
-            <div className='btn'>
+      <Router>
+        <header>
+          <div className='nav-bar'>
+            <Link className='title' to='/'> 포케띠부덱스 </Link>
+            <div className='btns'>
+              <Link className='btn' to='/'>
+                <span class="material-symbols-outlined"> collections_bookmark </span>
+              </Link>
+              <Link className='btn' to='/change'>
+                <span class="material-symbols-outlined"> published_with_changes </span>
+              </Link>
+              <Link className='btn' to='/message'>
+                <span class="material-symbols-outlined"> mail </span>
+              </Link>
+              <Link className='btn' to='/my-info'>
+                <span class="material-symbols-outlined"> account_circle </span>
+              </Link>
+            </div>
+          </div>
+        </header>
+
+        <body>
+          <Routes>
+            <Route path="/" element={<Seals />} />
+            <Route path="/change" element={<Change />} />
+            <Route path="/message" element={<Message />} />
+            <Route path="/my-info" element={<MyInfo />} />
+          </Routes>
+        </body>
+
+        <footer>
+            <Link className='btn' to='/'>
               <span class="material-symbols-outlined"> collections_bookmark </span>
-            </div>
-            <div className='btn'>
+              <p> 도감 </p>
+            </Link>
+            <Link className='btn' to='/change'>
               <span class="material-symbols-outlined"> published_with_changes </span>
-            </div>
-            <div className='btn'>
+              <p> 교환 </p>
+            </Link>
+            <Link className='btn' to='/message'>
               <span class="material-symbols-outlined"> mail </span>
-            </div>
-            <div className='btn'>
+              <p> 메시지 </p>
+            </Link>
+            <Link className='btn' to='/my-info'>
               <span class="material-symbols-outlined"> account_circle </span>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <body>
-      </body>
-
-      <footer>
-          <div className='btn'>
-            <span class="material-symbols-outlined"> collections_bookmark </span>
-            <p> 내 씰 </p>
-          </div>
-          <div className='btn'>
-            <span class="material-symbols-outlined"> published_with_changes </span>
-            <p> 교환 </p>
-          </div>
-          <div className='btn'>
-            <span class="material-symbols-outlined"> mail </span>
-            <p> 메시지 </p>
-          </div>
-          <div className='btn'>
-            <span class="material-symbols-outlined"> account_circle </span>
-            <p> 내 정보 </p>
-          </div>
-      </footer>
-
+              <p> 내 정보 </p>
+            </Link>
+        </footer>
+      </Router>
     </div>
   );
 }

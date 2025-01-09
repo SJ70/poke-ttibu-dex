@@ -12,6 +12,11 @@ body {
   margin:0 ;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 @font-face {
   font-family: 'NanumSquareEB';
   src: url('./font/NanumSquareEB.ttf') format('truetype');
