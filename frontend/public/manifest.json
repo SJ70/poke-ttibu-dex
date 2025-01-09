@@ -1,9 +1,9 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "포케띠부덱스",
+  "name": "포켓몬 띠부띠부씰 도감",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "pikachu-pixel.png",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }
