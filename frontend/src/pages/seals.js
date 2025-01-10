@@ -33,22 +33,7 @@ function Seals() {
       
       <PageControl />
       
-
-      <button onClick = {() => {
-        let diffs = [];
-        for (let i=0; i<SEALS_INFO.length; i++) {
-          if (isCollectedAtServer[i] !== isCollected[i]) {
-            diffs.push({
-              idx: i,
-              count: isCollected[i] - isCollectedAtServer[i],
-            });
-          }
-        }
-        setIsCollectedAtServer(isCollected);
-        // todo 서버에 diffs를 전송
-      }}>
-        저장
-      </button>
+      <SaveSeals />
 
     </div>
   )
@@ -235,6 +220,26 @@ function Seals() {
           {'>'}
         </button>
       </div>
+    );
+  }
+
+  function SaveSeals() {
+    return (
+      <button onClick = {() => {
+        let diffs = [];
+        for (let i=0; i<SEALS_INFO.length; i++) {
+          if (isCollectedAtServer[i] !== isCollected[i]) {
+            diffs.push({
+              idx: i,
+              count: isCollected[i] - isCollectedAtServer[i],
+            });
+          }
+        }
+        setIsCollectedAtServer(isCollected);
+        // todo 서버에 diffs를 전송
+      }}>
+        저장
+      </button>
     );
   }
 
