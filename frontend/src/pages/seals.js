@@ -80,7 +80,7 @@ function Seals() {
               let selectedSeals = SEALS_INFO.filter(seal => selectedSeries[seal.series]);
               sortSeals(selectedSeals, selectedSort);
 
-              let pageCnt = calcPageCnt(seals.length, rowCnt, columnCnt);
+              let pageCnt = calcPageCnt(selectedSeals.length, rowCnt, columnCnt);
               setPageCnt(pageCnt);
               setPageIdx(Math.min(pageIdx, pageCnt));
             }}
