@@ -27,28 +27,7 @@ function Seals() {
       <SortRadio value={'no'} text={'도감 번호 순'} />
       <SortRadio value={'name'} text={'이름 순'} />
 
-      
-
-      <label>행렬 크기 : </label>
-      <input type = "number" value = {rowCnt} 
-        onChange = {(event) => {
-          let value = validateRange(event.target.value, 1, 15);
-          setRowCnt(value); 
-          let pageCnt = calcPageCnt(seals.length, value, columnCnt);
-          setPageCnt(pageCnt);
-          setPageIdx(Math.min(pageIdx, pageCnt));
-        }} 
-      />
-      <span> x </span>
-      <input type = "number" value = {columnCnt} 
-        onChange = {(event) => {
-          let value = validateRange(event.target.value, 1, 15);
-          setColumnCnt(value); 
-          let pageCnt = calcPageCnt(seals.length, rowCnt, value);
-          setPageCnt(pageCnt);
-          setPageIdx(Math.min(pageIdx, pageCnt));
-        }} 
-      />
+      <ResizeTable />
 
       <SealTable />
       
@@ -156,6 +135,34 @@ function Seals() {
         break;
     }
     setSeals(sortedSeals);
+  }
+
+  function ResizeTable() {
+
+    return (
+      <div>
+        <label>행렬 크기 : </label>
+        <input type = "number" value = {rowCnt} 
+          onChange = {(event) => {
+            let value = validateRange(event.target.value, 1, 15);
+            setRowCnt(value); 
+            let pageCnt = calcPageCnt(seals.length, value, columnCnt);
+            setPageCnt(pageCnt);
+            setPageIdx(Math.min(pageIdx, pageCnt));
+          }} 
+        />
+        <span> x </span>
+        <input type = "number" value = {columnCnt} 
+          onChange = {(event) => {
+            let value = validateRange(event.target.value, 1, 15);
+            setColumnCnt(value); 
+            let pageCnt = calcPageCnt(seals.length, rowCnt, value);
+            setPageCnt(pageCnt);
+            setPageIdx(Math.min(pageIdx, pageCnt));
+          }} 
+        />
+      </div>
+    );
   }
 
   function SealTable() {
