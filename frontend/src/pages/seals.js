@@ -31,7 +31,7 @@ function Seals() {
 
       <SealTable />
       
-      <button onClick = {() => setPageIdx(Math.max(pageIdx - 1, 1))}>
+      <button onClick = {() => setPageIdx(Math.max(pageIdx - 1, Math.min(pageCnt, 1)))}>
         {'<'} 
       </button>
       <input type = "number" value = {pageIdx} 
@@ -82,7 +82,7 @@ function Seals() {
 
               let pageCnt = calcPageCnt(selectedSeals.length, rowCnt, columnCnt);
               setPageCnt(pageCnt);
-              setPageIdx(Math.min(pageIdx, pageCnt));
+              setPageIdx(Math.min(Math.max(1, pageIdx), pageCnt));
             }}
           />
           {SERIES_INFO[i].title}, {SERIES_INFO[i].release} 출시
