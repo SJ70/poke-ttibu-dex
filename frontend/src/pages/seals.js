@@ -115,10 +115,18 @@ function Seals() {
     let sortedSeals;
     switch (sort) {
       case 'series' :
-        sortedSeals = selectedSeals.sort((a, b) => a.idx - b.idx);
+        sortedSeals = selectedSeals.sort((a, b) => {
+          if (a === undefined && b === undefined) return 0;
+          if (a === undefined) return 1;
+          if (b === undefined) return -1;
+          return a.idx - b.idx;
+        });
         break;
       case 'no' : 
         sortedSeals = selectedSeals.sort((a, b) => {
+          if (a === undefined && b === undefined) return 0;
+          if (a === undefined) return 1;
+          if (b === undefined) return -1;
           if (a.no === null && b.no !== null) return 1;
           if (b.no === null && a.no !== null) return -1;
           return a.no - b.no;
@@ -126,6 +134,9 @@ function Seals() {
         break;
       case 'name' :
         sortedSeals = selectedSeals.sort((a, b) => {
+          if (a === undefined && b === undefined) return 0;
+          if (a === undefined) return 1;
+          if (b === undefined) return -1;
           if (a.name < b.name) return -1;
           if (a.name > b.name) return 1;
           return a.idx - b.idx;
@@ -166,6 +177,26 @@ function Seals() {
   }
 
   function SealTable() {
+
+    function TableElement({idx, seal}) {
+      return (
+        <div>
+          <img src={`/images/seals/${seal.code}.png`} alt={seal.name} />
+          <p> no. {seal.no} </p>
+          <p> {seal.name} </p>
+          <p> {SERIES_INFO[seal.series].title} </p>
+          {isCollected[idx] ? '획득' : '미획득'}
+        </div>
+      );
+    }
+    function EmptyElement() {
+      return (
+        <div>
+          <img src={`/images/seals/null.png`} alt={'empty'} />
+        </div>
+      );
+    }
+
     let rows = [];
     let startIdx = rowCnt * columnCnt * (pageIdx - 1);
     for (let i=0; i<rowCnt; i++) {
@@ -179,11 +210,11 @@ function Seals() {
               isCollected[idx] = !isCollected[idx];
               setIsCollected([...isCollected]);
             }}>
-              <img src={`/images/seals/${seal.code}.png`} alt={seal.name}/>
-              <p> no. {seal.no} </p>
-              <p> {seal.name} </p>
-              <p> {SERIES_INFO[seal.series].title} </p>
-              {isCollected[idx] ? '획득' : '미획득'}
+              {
+                (seal === undefined) 
+                ? <EmptyElement />
+                : <TableElement idx = {idx} seal = {seal}/>
+              }
             </div>
           </td>
         )
