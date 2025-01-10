@@ -31,19 +31,8 @@ function Seals() {
 
       <SealTable />
       
-      <button onClick = {() => setPageIdx(Math.max(pageIdx - 1, Math.min(pageCnt, 1)))}>
-        {'<'} 
-      </button>
-      <input type = "number" value = {pageIdx} 
-        onChange = {(event) => {
-          let value = validateRange(event.target.value, 1, pageCnt);
-          setPageIdx(value);
-        }}
-      />
-      <span> / {pageCnt}</span>
-      <button onClick = {() => setPageIdx(Math.min(pageIdx + 1, pageCnt))}> 
-        {'>'}
-      </button>
+      <PageControl />
+      
 
       <button onClick = {() => {
         let diffs = [];
@@ -227,6 +216,26 @@ function Seals() {
     }
   
     return <table><tbody>{rows}</tbody></table>;
+  }
+
+  function PageControl() {
+    return (
+      <div>
+        <button onClick = {() => setPageIdx(Math.max(pageIdx - 1, Math.min(pageCnt, 1)))}>
+          {'<'} 
+        </button>
+        <input type = "number" value = {pageIdx} 
+          onChange = {(event) => {
+            let value = validateRange(event.target.value, 1, pageCnt);
+            setPageIdx(value);
+          }}
+        />
+        <span> / {pageCnt}</span>
+        <button onClick = {() => setPageIdx(Math.min(pageIdx + 1, pageCnt))}> 
+          {'>'}
+        </button>
+      </div>
+    );
   }
 
 }
