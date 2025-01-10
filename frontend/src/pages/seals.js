@@ -23,53 +23,11 @@ function Seals() {
     <div>
       <SelectSeries />
 
-      <label>
-        <input
-          type='radio'
-          value='series'
-          checked={selectedSort === 'series'}
-          onChange={(event) => {
-            setSelectedSort(event.target.value);
-            let sortedSeals = seals.sort((a, b) => a.idx - b.idx);
-            setSeals(sortedSeals);
-          }}
-        />
-        시리즈 순
-      </label>
-      <label>
-        <input
-          type='radio'
-          value='no'
-          checked={selectedSort === 'no'}
-          onChange={(event) => {
-            setSelectedSort(event.target.value);
-            let sortedSeals = seals.sort((a, b) => {
-              if (a.no === null && b.no !== null) return 1;
-              if (b.no === null && a.no !== null) return -1;
-              return a.no - b.no;
-            });
-            setSeals(sortedSeals);
-          }}
-        />
-        도감 번호 순
-      </label>
-      <label>
-        <input
-          type='radio'
-          value='name'
-          checked={selectedSort === 'name'}
-          onChange={(event) => {
-            setSelectedSort(event.target.value);
-            let sortedSeals = seals.sort((a, b) => {
-              if (a.name < b.name) return -1;
-              if (a.name > b.name) return 1;
-              return a.idx - b.idx;
-            });
-            setSeals(sortedSeals);
-          }}
-        />
-        이름 순
-      </label>
+      <SortRadio value={'series'} text={'시리즈 순'} />
+      <SortRadio value={'no'} text={'도감 번호 순'} />
+      <SortRadio value={'name'} text={'이름 순'} />
+
+      
 
       <label>행렬 크기 : </label>
       <input type = "number" value = {rowCnt} 
@@ -140,28 +98,8 @@ function Seals() {
               selectedSeries[i] = checked;
               setSelectedSeries([...selectedSeries]);
 
-              let newSeals = SEALS_INFO.filter(seal => selectedSeries[seal.series]);
-              switch (selectedSort) {
-                case 'idx' :
-                  newSeals = newSeals.sort((a, b) => a.idx - b.idx);
-                  break;
-                case 'no' : 
-                  newSeals = newSeals.sort((a, b) => {
-                    if (a.no === null && b.no !== null) return 1;
-                    if (b.no === null && a.no !== null) return -1;
-                    return a.no - b.no;
-                  });
-                break;
-                case 'name' :
-                  newSeals = newSeals.sort((a, b) => {
-                    if (a.name < b.name) return -1;
-                    if (a.name > b.name) return 1;
-                    return a.idx - b.idx;
-                  });
-                break;
-                default : break;
-              }
-              setSeals(newSeals);
+              let selectedSeals = SEALS_INFO.filter(seal => selectedSeries[seal.series]);
+              sortSeals(selectedSeals, selectedSort);
 
               let pageCnt = calcPageCnt(seals.length, rowCnt, columnCnt);
               setPageCnt(pageCnt);
@@ -173,6 +111,51 @@ function Seals() {
       );
     }
     return <div>{rows}</div>;
+  }
+
+  function SortRadio({value, text}) {
+    return (
+      <label>
+        <input
+          type='radio'
+          value={value}
+          checked={selectedSort === value}
+          onChange={(event) => handleSort(event)}
+        />
+        {text}
+      </label>
+    );
+  }
+
+  function handleSort(event) {
+    setSelectedSort(event.target.value);
+    sortSeals(seals, event.target.value);
+  }
+
+  function sortSeals(selectedSeals, sort) {
+    let sortedSeals;
+    switch (sort) {
+      case 'series' :
+        sortedSeals = selectedSeals.sort((a, b) => a.idx - b.idx);
+        break;
+      case 'no' : 
+        sortedSeals = selectedSeals.sort((a, b) => {
+          if (a.no === null && b.no !== null) return 1;
+          if (b.no === null && a.no !== null) return -1;
+          return a.no - b.no;
+        });
+        break;
+      case 'name' :
+        sortedSeals = selectedSeals.sort((a, b) => {
+          if (a.name < b.name) return -1;
+          if (a.name > b.name) return 1;
+          return a.idx - b.idx;
+        });
+        break;
+      default : 
+        break;
+    }
+    setSeals(sortedSeals);
   }
 
   function SealTable() {
