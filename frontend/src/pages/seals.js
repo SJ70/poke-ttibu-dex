@@ -140,8 +140,28 @@ function Seals() {
               selectedSeries[i] = checked;
               setSelectedSeries([...selectedSeries]);
 
-              let seals = SEALS_INFO.filter(seal => selectedSeries[seal.series]);
-              setSeals([...seals]);
+              let newSeals = SEALS_INFO.filter(seal => selectedSeries[seal.series]);
+              switch (selectedSort) {
+                case 'idx' :
+                  newSeals = newSeals.sort((a, b) => a.idx - b.idx);
+                  break;
+                case 'no' : 
+                  newSeals = newSeals.sort((a, b) => {
+                    if (a.no === null && b.no !== null) return 1;
+                    if (b.no === null && a.no !== null) return -1;
+                    return a.no - b.no;
+                  });
+                break;
+                case 'name' :
+                  newSeals = newSeals.sort((a, b) => {
+                    if (a.name < b.name) return -1;
+                    if (a.name > b.name) return 1;
+                    return a.idx - b.idx;
+                  });
+                break;
+                default : break;
+              }
+              setSeals(newSeals);
 
               let pageCnt = calcPageCnt(seals.length, rowCnt, columnCnt);
               setPageCnt(pageCnt);
