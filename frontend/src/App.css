@@ -1,8 +1,7 @@
 .app {
   font-family: 'NanumSquareR', sans-serif;
+  user-select: none; 
 }
-
-
 
 header {
   background-color: var(--red);
