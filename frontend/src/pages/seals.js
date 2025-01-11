@@ -1,4 +1,5 @@
 import '../index.css';
+import './seals.css';
 import React, { useState } from 'react';
 import { SEALS_INFO } from '../const/sealsInfo';
 import { SERIES_INFO } from '../const/seriesInfo';
@@ -19,13 +20,27 @@ function Seals() {
   const [pageIdx, setPageIdx] = useState(1);
   const [pageCnt, setPageCnt] = useState(calcPageCnt(SEALS_INFO.length, rowCnt, columnCnt));
 
+  const [showFilter, setShowFilter] = useState(false);
+  const [showSort, setShowSort] = useState(false);
+
   return (
     <div>
-      <SelectSeries />
 
-      <SortRadio value={'series'} text={'시리즈 순'} />
-      <SortRadio value={'no'} text={'도감 번호 순'} />
-      <SortRadio value={'name'} text={'이름 순'} />
+      <div onClick={() => setShowFilter(!showFilter)}>
+        필터
+        <div style={{display: showFilter ? '' : 'none'}} className='drop-down-elements'>
+          <SelectSeries />
+        </div>
+      </div>
+
+      <div onClick={() => setShowSort(!showSort)}>
+        정렬
+        <div style={{display: showSort ? '' : 'none'}} className='drop-down-elements'>
+          <SortRadio value={'series'} text={'시리즈 순'} />
+          <SortRadio value={'no'} text={'번호 순'} />
+          <SortRadio value={'name'} text={'이름 순'} />
+        </div>
+      </div>
 
       <ResizeTable />
 
