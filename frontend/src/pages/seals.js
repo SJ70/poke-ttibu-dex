@@ -1,6 +1,6 @@
 import '../index.css';
 import './seals.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SEALS_INFO } from '../const/sealsInfo';
 import { SERIES_INFO } from '../const/seriesInfo';
 
@@ -22,6 +22,14 @@ function Seals() {
 
   const [showFilter, setShowFilter] = useState(false);
   const [showSort, setShowSort] = useState(false);
+
+
+  // pageCnt 관리
+  useEffect(() => {
+    let pageCnt = calcPageCnt(seals.length, rowCnt, columnCnt);
+    setPageCnt(pageCnt);
+    setPageIdx(Math.min(Math.max(1, pageIdx), pageCnt));
+  }, [seals, rowCnt, columnCnt])
 
   return (
     <div>
@@ -68,10 +76,6 @@ function Seals() {
 
               let selectedSeals = SEALS_INFO.filter(seal => selectedSeries[seal.series]);
               sortSeals(selectedSeals, selectedSort);
-
-              let pageCnt = calcPageCnt(selectedSeals.length, rowCnt, columnCnt);
-              setPageCnt(pageCnt);
-              setPageIdx(Math.min(Math.max(1, pageIdx), pageCnt));
             }}
           />
           {SERIES_INFO[i].title}, {SERIES_INFO[i].release} 출시
@@ -146,9 +150,6 @@ function Seals() {
           onChange = {(event) => {
             let value = validateRange(event.target.value, 1, 15);
             setRowCnt(value); 
-            let pageCnt = calcPageCnt(seals.length, value, columnCnt);
-            setPageCnt(pageCnt);
-            setPageIdx(Math.min(pageIdx, pageCnt));
           }} 
         />
         <span> x </span>
@@ -156,9 +157,6 @@ function Seals() {
           onChange = {(event) => {
             let value = validateRange(event.target.value, 1, 15);
             setColumnCnt(value); 
-            let pageCnt = calcPageCnt(seals.length, rowCnt, value);
-            setPageCnt(pageCnt);
-            setPageIdx(Math.min(pageIdx, pageCnt));
           }} 
         />
       </div>
