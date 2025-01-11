@@ -34,6 +34,17 @@ function Seals() {
   return (
     <div>
 
+      <div>
+        <input type='text' placeholder='검색어' onChange={(event) => {
+          let word = event.target.value;
+          let selectedSeals = SEALS_INFO.filter(seal => selectedSeries[seal.series]);
+          let foundSeals = selectedSeals.filter(seal => seal.name.includes(word) || seal.no === Number(word));
+          let sortedSeals = sortSeals(foundSeals, selectedSort);
+          setSeals(sortedSeals)
+        }}>
+        </input>
+      </div>
+
       <div onClick={() => setShowFilter(!showFilter)}>
         필터
         <div style={{display: showFilter ? '' : 'none'}} className='drop-down-elements'>
@@ -75,7 +86,8 @@ function Seals() {
               setSelectedSeries([...selectedSeries]);
 
               let selectedSeals = SEALS_INFO.filter(seal => selectedSeries[seal.series]);
-              sortSeals(selectedSeals, selectedSort);
+              let sortedSeals = sortSeals(selectedSeals, selectedSort);
+              setSeals(sortedSeals);
             }}
           />
           {SERIES_INFO[i].title}, {SERIES_INFO[i].release} 출시
@@ -92,16 +104,15 @@ function Seals() {
           type='radio'
           value={value}
           checked={selectedSort === value}
-          onChange={(event) => handleSort(event)}
+          onChange={(event) => {
+            setSelectedSort(event.target.value);
+            let sortedSeals = sortSeals(seals, event.target.value);
+            setSeals(sortedSeals);
+          }}
         />
         {text}
       </label>
     );
-  }
-
-  function handleSort(event) {
-    setSelectedSort(event.target.value);
-    sortSeals(seals, event.target.value);
   }
 
   function sortSeals(selectedSeals, sort) {
@@ -138,7 +149,7 @@ function Seals() {
       default : 
         break;
     }
-    setSeals(sortedSeals);
+    return sortedSeals;
   }
 
   function ResizeTable() {
@@ -191,20 +202,28 @@ function Seals() {
       for (let j=0; j<columnCnt; j++) {
         let idx = startIdx + i * columnCnt + j;
         let seal = seals[idx];
-        cols.push(
-          <td id={idx} key={idx} >
-            <div onClick={() => {
-              isCollected[idx] = !isCollected[idx];
-              setIsCollected([...isCollected]);
-            }}>
-              {
-                (seal === undefined) 
-                ? <EmptyElement />
-                : <TableElement idx = {idx} seal = {seal}/>
-              }
-            </div>
-          </td>
-        )
+
+        if (seal !== undefined) {
+          cols.push(
+            <td id={idx} key={idx} >
+              <div onClick={() => {
+                isCollected[idx] = !isCollected[idx];
+                setIsCollected([...isCollected]);
+              }}>
+                <TableElement idx = {idx} seal = {seal}/>
+              </div>
+            </td>
+          )
+        }
+        else {
+          cols.push(
+            <td id={idx} key={idx} >
+              <div>
+                <EmptyElement />
+              </div>
+            </td>
+          )
+        }
       }
       rows.push(
         <tr id={i} key={i}>
