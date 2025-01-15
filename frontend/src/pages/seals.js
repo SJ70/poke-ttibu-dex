@@ -20,10 +20,6 @@ function Seals() {
   const [pageIdx, setPageIdx] = useState(1);
   const [pageCnt, setPageCnt] = useState(calcPageCnt(SEALS_INFO.length, rowCnt, columnCnt));
 
-  const [showFilter, setShowFilter] = useState(false);
-  const [showSort, setShowSort] = useState(false);
-
-
   // pageCnt 관리
   useEffect(() => {
     let pageCnt = calcPageCnt(seals.length, rowCnt, columnCnt);
@@ -34,40 +30,53 @@ function Seals() {
   return (
     <div>
 
-      <div>
-        <input type='text' placeholder='검색어' onChange={(event) => {
-          let word = event.target.value;
-          let selectedSeals = SEALS_INFO.filter(seal => selectedSeries[seal.series]);
-          let foundSeals = selectedSeals.filter(seal => seal.name.includes(word) || seal.no === Number(word));
-          let sortedSeals = sortSeals(foundSeals, selectedSort);
-          setSeals(sortedSeals)
-        }}>
-        </input>
-      </div>
+      <div className='control-bar'>
 
-      <div onClick={() => setShowFilter(!showFilter)}>
-        필터
-        <div style={{display: showFilter ? '' : 'none'}} className='drop-down-elements'>
+        <div className='search'>
+          <input type='text' placeholder='검색어' onChange={(event) => {
+            let word = event.target.value;
+            let selectedSeals = SEALS_INFO.filter(seal => selectedSeries[seal.series]);
+            let foundSeals = selectedSeals.filter(seal => seal.name.includes(word) || seal.no === Number(word));
+            let sortedSeals = sortSeals(foundSeals, selectedSort);
+            setSeals(sortedSeals)
+          }}>
+          </input>
+        </div>
+
+        <div className='btn drop-down'>
+          <span class="material-symbols-outlined">
+            grid_on
+          </span>
+          <ResizeTable />
+        </div>
+
+        <div className='btn drop-down'>
+          <span class="material-symbols-outlined">
+            filter_alt
+          </span>
           <SelectSeries />
         </div>
-      </div>
 
-      <div onClick={() => setShowSort(!showSort)}>
-        정렬
-        <div style={{display: showSort ? '' : 'none'}} className='drop-down-elements'>
-          <SortRadio value={'series'} text={'시리즈 순'} />
-          <SortRadio value={'no'} text={'번호 순'} />
-          <SortRadio value={'name'} text={'이름 순'} />
+        <div className='btn drop-down'>
+          <span class="material-symbols-outlined">
+            sort
+          </span>
+          <div className='drop-down-elements'>
+            <SortRadio value={'series'} text={'시리즈 순'} />
+            <SortRadio value={'no'} text={'번호 순'} />
+            <SortRadio value={'name'} text={'이름 순'} />
+          </div>
         </div>
+        
+        <SaveSeals />
+
       </div>
 
-      <ResizeTable />
-
-      <SealTable />
+      <div className='table-wrapper'>
+        <SealTable />
+      </div>
       
       <PageControl />
-      
-      <SaveSeals />
 
     </div>
   )
@@ -76,7 +85,7 @@ function Seals() {
     let rows = [];
     for (let i=0; i<SERIES_INFO.length; i++) {
       rows.push(
-        <div key = {i}>
+        <label className='series' key = {i}>
           <input 
             type = "checkbox" 
             checked = {selectedSeries[i]} 
@@ -90,16 +99,21 @@ function Seals() {
               setSeals(sortedSeals);
             }}
           />
-          {SERIES_INFO[i].title}, {SERIES_INFO[i].release} 출시
-        </div>
+          <p className='series-title'>
+            {SERIES_INFO[i].title}
+          </p>
+          <p className='series-release'>
+            {SERIES_INFO[i].release} 출시
+          </p>
+        </label>
       );
     }
-    return <div>{rows}</div>;
+    return <div className='drop-down-elements'>{rows}</div>;
   }
 
   function SortRadio({value, text}) {
     return (
-      <label>
+      <label className='sort-radio'>
         <input
           type='radio'
           value={value}
@@ -155,21 +169,45 @@ function Seals() {
   function ResizeTable() {
 
     return (
-      <div>
-        <label>행렬 크기 : </label>
-        <input type = "number" value = {rowCnt} 
-          onChange = {(event) => {
-            let value = validateRange(event.target.value, 1, 15);
-            setRowCnt(value); 
-          }} 
-        />
-        <span> x </span>
-        <input type = "number" value = {columnCnt} 
-          onChange = {(event) => {
-            let value = validateRange(event.target.value, 1, 15);
-            setColumnCnt(value); 
-          }} 
-        />
+      <div className='resize drop-down-elements'>
+        <div className='resize-div'>
+          <div className='row-column-cnt'>행의 수 : {rowCnt}</div>
+          <div className='btn little-btn'>
+            <span class="material-symbols-outlined" onClick={() => {
+              let value = validateRange(rowCnt - 1, 1, 15);
+              setRowCnt(value); 
+            }}>
+              remove
+            </span>
+          </div>
+          <div className='btn little-btn'>
+            <span class="material-symbols-outlined" onClick={() => {
+              let value = validateRange(rowCnt + 1, 1, 15);
+              setRowCnt(value); 
+            }}>
+              add
+            </span>
+          </div>
+        </div>
+        <div className='resize-div'>
+          <div className='row-column-cnt'>열의 수 : {columnCnt}</div>
+          <div className='btn little-btn'>
+            <span class="material-symbols-outlined" onClick={() => {
+              let value = validateRange(columnCnt - 1, 1, 15);
+              setColumnCnt(value); 
+            }}>
+              remove
+            </span>
+          </div>
+          <div className='btn little-btn'>
+            <span class="material-symbols-outlined" onClick={() => {
+              let value = validateRange(columnCnt + 1, 1, 15);
+              setColumnCnt(value); 
+            }}>
+              add
+            </span>
+          </div>
+        </div>
       </div>
     );
   }
@@ -178,18 +216,23 @@ function Seals() {
 
     function TableElement({idx, seal}) {
       return (
-        <div>
+        <div 
+          className = {isCollected[idx] ? 'seal-cell' : 'seal-cell uncollected'} 
+          onClick = {() => {
+            isCollected[idx] = !isCollected[idx];
+            setIsCollected([...isCollected]);
+          }}
+        >
           <img src={`/images/seals/${seal.code}.png`} alt={seal.name} />
-          <p> no. {seal.no} </p>
+          {/* <p> no. {seal.no} </p>
           <p> {seal.name} </p>
-          <p> {SERIES_INFO[seal.series].title} </p>
-          {isCollected[idx] ? '획득' : '미획득'}
+          <p> {SERIES_INFO[seal.series].title} </p> */}
         </div>
       );
     }
     function EmptyElement() {
       return (
-        <div>
+        <div className='seal-cell uncollected'>
           <img src={`/images/seals/null.png`} alt={'empty'} />
         </div>
       );
@@ -202,28 +245,15 @@ function Seals() {
       for (let j=0; j<columnCnt; j++) {
         let idx = startIdx + i * columnCnt + j;
         let seal = seals[idx];
-
-        if (seal !== undefined) {
-          cols.push(
-            <td id={idx} key={idx} >
-              <div onClick={() => {
-                isCollected[idx] = !isCollected[idx];
-                setIsCollected([...isCollected]);
-              }}>
-                <TableElement idx = {idx} seal = {seal}/>
-              </div>
-            </td>
-          )
-        }
-        else {
-          cols.push(
-            <td id={idx} key={idx} >
-              <div>
-                <EmptyElement />
-              </div>
-            </td>
-          )
-        }
+        cols.push(
+          <td id={idx} key={idx} >
+            {
+              (seal !== undefined)
+              ? <TableElement idx = {idx} seal = {seal}/>
+              : <EmptyElement />
+            }
+          </td>
+        )
       }
       rows.push(
         <tr id={i} key={i}>
@@ -236,28 +266,60 @@ function Seals() {
   }
 
   function PageControl() {
+    function PageBtn({idx, isSide}) {
+      let classNames = ['page-btn'];
+      if (idx < 1 || idx > pageCnt) {
+        classNames.push('invisible');
+      }
+      if (pageIdx === idx) {
+        classNames.push('current-idx')
+      }
+      if (isSide) {
+        if ((idx === 1 && pageIdx < 4) || (idx === pageCnt && pageIdx > pageCnt - 3)) {
+          classNames.push('invisible');
+        }
+      }
+      return (
+        <div className={classNames.join(' ')} onClick = {() => setPageIdx(idx)}>
+          {idx}
+        </div>
+      );
+    }
+
     return (
-      <div>
-        <button onClick = {() => setPageIdx(Math.max(pageIdx - 1, Math.min(pageCnt, 1)))}>
-          {'<'} 
-        </button>
-        <input type = "number" value = {pageIdx} 
-          onChange = {(event) => {
-            let value = validateRange(event.target.value, 1, pageCnt);
-            setPageIdx(value);
-          }}
-        />
-        <span> / {pageCnt}</span>
-        <button onClick = {() => setPageIdx(Math.min(pageIdx + 1, pageCnt))}> 
-          {'>'}
-        </button>
+      <div className='page-control'>
+        <div className='btn' onClick = {() => setPageIdx(Math.max(pageIdx - 1, Math.min(pageCnt, 1)))}>
+          <span class="material-symbols-outlined">
+            arrow_back
+          </span>
+        </div>
+        <div className='page-btns'>
+          <PageBtn idx={1} isSide={true}/>
+          <div className={pageIdx <= 4 ? 'invisible':''}>
+            ...
+          </div>
+          <PageBtn idx={pageIdx - 2} isSide={false}/>
+          <PageBtn idx={pageIdx - 1} isSide={false}/>
+          <PageBtn idx={pageIdx}     isSide={false}/>
+          <PageBtn idx={pageIdx + 1} isSide={false}/>
+          <PageBtn idx={pageIdx + 2} isSide={false}/>
+          <div className={pageIdx >= pageCnt - 3 ? 'invisible':''}>
+            ...
+          </div>
+          <PageBtn idx={pageCnt} isSide={true}/>
+        </div>
+        <div className='btn' onClick = {() => setPageIdx(Math.min(pageIdx + 1, pageCnt))}>
+          <span class="material-symbols-outlined">
+            arrow_forward
+          </span>
+        </div>
       </div>
     );
   }
 
   function SaveSeals() {
     return (
-      <button onClick = {() => {
+      <div className="btn" onClick = {() => {
         let diffs = [];
         for (let i=0; i<SEALS_INFO.length; i++) {
           if (isCollectedAtServer[i] !== isCollected[i]) {
@@ -270,8 +332,10 @@ function Seals() {
         setIsCollectedAtServer(isCollected);
         // todo 서버에 diffs를 전송
       }}>
-        저장
-      </button>
+        <span class="material-symbols-outlined">
+          save
+        </span>
+      </div>
     );
   }
 

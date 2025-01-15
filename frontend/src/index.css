@@ -1,7 +1,9 @@
 :root {
   --red: #ff6060;
   --white: #ffffff;
-  --gray: #888888;
+  --gray: rgb(163, 163, 163);
+  --light-gray: rgb(241, 241, 241);
+  --dark-gray: rgb(80, 80, 80);
 }
 
 p {
@@ -15,6 +17,22 @@ body {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+button, input {
+  background-color: inherit;
+  border: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+input {
+  font-size: inherit;
+  outline: none;
+}
+
+.btn:hover {
+  cursor: pointer;
 }
 
 @font-face {
