@@ -1,6 +1,6 @@
 import './index.css';
 import './App.css';
-import Change from './pages/change.js';
+import Market from './pages/market.js';
 import Seals from './pages/seals.js';
 import MyInfo from './pages/myInfo.js';
 import Message from './pages/message.js';
@@ -20,7 +20,7 @@ function App() {
         <div className='page'>
           <Routes>
             <Route path="/" element={<Seals />} />
-            <Route path="/change" element={<Change />} />
+            <Route path="/market" element={<Market />} />
             <Route path="/message" element={<Message />} />
             <Route path="/my-info" element={<MyInfo />} />
           </Routes>
@@ -41,7 +41,7 @@ function Links() {
         <span className="material-symbols-outlined"> collections_bookmark </span>
         <p> 도감 </p>
       </Link>
-      <Link className='btn' to='/change'>
+      <Link className='btn' to='/market'>
         <span className="material-symbols-outlined"> store </span>
         <p> 장터 </p>
       </Link>

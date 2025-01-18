@@ -1,11 +1,11 @@
 import '../index.css';
 
-function Change() {
+function Market() {
   return (
     <div>
-      교환
+      장터
     </div>
   )
 }
 
-export default Change;
+export default Market;
