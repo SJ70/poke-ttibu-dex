@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './login.css';
+import { login } from '../api/memberApi';
 import { Link } from 'react-router-dom';
 
 function Login () {
@@ -35,7 +36,16 @@ function Login () {
   );
 
   function handleSubmit(event) {
-    
+    event.preventDefault();
+
+    const response = login(email, password);
+
+    // 토큰
+    const token = response.token;
+    const expires = new Date();
+    expires.setTime(expires.getTime() + 60 * 60 * 1000);
+    document.cookie = `token=${token}; path=/; expires=${expires.toUTCString()}; HttpOnly; SameSite=Strict`;
+    // document.cookie = `token=${response.token}; path=/; expires=${expires.toUTCString()}; secure; HttpOnly; SameSite=Strict`;
   }
 
 }
