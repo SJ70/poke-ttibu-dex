@@ -1,76 +1,76 @@
 .login {
-    position: absolute;
-    transform: translateY(50%);
-    bottom: calc(50% + 4em);
+  position: absolute;
+  transform: translateY(50%);
+  bottom: calc(50% + 4em);
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    gap: .5em;
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
 }
 
 .login h2 {
-    text-align: center;
-    margin: .5em;
+  text-align: center;
+  margin: .5em;
 }
 
 .login label {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .login label p {
-    color: var(--dark-gray);
-    width: 4.5em;
-    font-size: .9em;
+  color: var(--dark-gray);
+  width: 4.5em;
+  font-size: .9em;
 }
 
 .login label input {
-    padding: .25em .5em .25em .5em;
-    font-size: .9em;
-    flex: 1;
-    width: 80%;
+  padding: .25em .5em .25em .5em;
+  font-size: .9em;
+  flex: 1;
+  width: 80%;
 }
 
 .login button {
-    height: 2.5em;
-    font-size: 1em;
+  height: 2.5em;
+  font-size: 1em;
 }
 
 .submit{
-    width: 100%;
+  width: 100%;
 }
 
 .switch {
-    width: 100%;
-    color: var(--red);
-    font-size: .75em;
+  width: 100%;
+  color: var(--red);
+  font-size: .75em;
 }
 
 .switch p {
-    width: 100%;
-    text-align: center;
-    padding: .5em 0 .5em 0;
+  width: 100%;
+  text-align: center;
+  padding: .5em 0 .5em 0;
 }
 
 
 @media (max-width: 768px) {
-    .login {
-        max-width: calc(100% - 2em);
-    }
+  .login {
+    max-width: calc(100% - 2em);
+  }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-    .login {
-        max-width: 20em;
-    }
+  .login {
+    max-width: 20em;
+  }
 }
 
 @media (min-width: 1025px) {
-    .login {
-        max-width: 20em;
-    }
+  .login {
+    max-width: 20em;
+  }
 }
