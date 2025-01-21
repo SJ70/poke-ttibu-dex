@@ -2,6 +2,7 @@ import './login.css';
 import './join.css';
 import { useState } from 'react';
 import { createMember } from '../api/memberApi';
+import { useNavigate } from 'react-router-dom';
 
 function Join () {
 
@@ -17,6 +18,8 @@ function Join () {
   const [password, setPassword] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [isPasswordValid, setIsPasswordValid] = useState(false);
+
+  const navigate = useNavigate();
 
   return (
     <div className='login'>
@@ -129,11 +132,11 @@ function Join () {
   function handleSubmit(event) {
     event.preventDefault();
     if (!isNicknameValid || !isNicknameUnique || !isEmailCertified || !isPasswordValid) {
-      event.preventDefault();
       return;
     }
-    const response = createMember(nickname, email, password);
-    console.log(response);
+    createMember(nickname, email, password);
+    window.alert("회원가입이 완료되었습니다.");
+    navigate("/login");
   }
 
 }
