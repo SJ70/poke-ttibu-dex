@@ -16,11 +16,11 @@ function Login () {
       <form onSubmit={handleSubmit}>
         <label>
           <p> 이메일 </p>
-          <input type='text' placeholder='example@email.com' onChange={(e) => setEmail(e.target.value)} />
+          <input type='text' placeholder='example@email.com' onChange={(e) => setEmail(e.target.value)} autoComplete='email' />
         </label>
         <label>
           <p> 비밀번호 </p>
-          <input type='password' placeholder='password' onChange={(e) => setPassword(e.target.value)} />
+          <input type='password' placeholder='password' onChange={(e) => setPassword(e.target.value)} autoComplete='current-password' />
         </label>
         <button className={(email !== '' && password !== '') ? 'submit red-btn' : 'submit deactivated-btn'} >
             로그인
