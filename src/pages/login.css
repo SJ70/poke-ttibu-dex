@@ -44,6 +44,18 @@ form {
     width: 100%;
 }
 
+.switch {
+    width: 100%;
+    color: var(--red);
+    font-size: .75em;
+}
+
+.switch p {
+    width: 100%;
+    text-align: center;
+    padding: .5em 0 .5em 0;
+}
+
 
 @media (max-width: 768px) {
     .login {

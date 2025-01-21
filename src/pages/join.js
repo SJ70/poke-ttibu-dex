@@ -2,7 +2,7 @@ import './login.css';
 import './join.css';
 import { useState } from 'react';
 import { createMember } from '../api/memberApi';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Join () {
 
@@ -23,42 +23,38 @@ function Join () {
 
   return (
     <div className='login'>
-      <h2>
-          회원가입
-      </h2>
+      <h2> 회원가입 </h2>
 
-    <form onSubmit={handleSubmit}>
-      <label>
-        <p>
-          닉네임
-        </p>
-        <input type='text' placeholder='nickname' onChange={handleNicknameChange} />
-        <button className={!isNicknameUnique ? 'check-btn red-btn' : 'check-btn deactivated-btn'} onClick={handleCheckNicknameExists}>
-          중복 확인
-        </button>
-      </label>
-
-      <label>
-          <p>
-            이메일
-          </p>
-          <input type='text' placeholder='example@email.com' onChange={handleEmailChange} autoComplete="email" />
-          <button className={!isEmailCertified ? 'check-btn red-btn' : 'check-btn deactivated-btn'} onClick={handleAuthEmail}>
-            인증
+      <form onSubmit={handleSubmit}>
+        <label>
+          <p> 닉네임 </p>
+          <input type='text' placeholder='nickname' onChange={handleNicknameChange} />
+          <button className={!isNicknameUnique ? 'check-btn red-btn' : 'check-btn deactivated-btn'} onClick={handleCheckNicknameExists}>
+            중복 확인
           </button>
-      </label>
+        </label>
 
-      <label>
-        <p>
-          비밀번호
-        </p>
-        <input type='password' placeholder='password' onChange={handlePasswordChange} autoComplete="new-password" />
-      </label>
+        <label>
+            <p> 이메일 </p>
+            <input type='text' placeholder='example@email.com' onChange={handleEmailChange} autoComplete="email" />
+            <button className={!isEmailCertified ? 'check-btn red-btn' : 'check-btn deactivated-btn'} onClick={handleAuthEmail}>
+              인증
+            </button>
+        </label>
 
-      <button type='submit' className={isNicknameValid && isEmailCertified && isPasswordValid ? 'submit red-btn' : 'submit deactivated-btn'} >
-        회원가입
-      </button>
-    </form>
+        <label>
+          <p> 비밀번호 </p>
+          <input type='password' placeholder='password' onChange={handlePasswordChange} autoComplete="new-password" />
+        </label>
+
+        <button type='submit' className={isNicknameValid && isEmailCertified && isPasswordValid ? 'submit red-btn' : 'submit deactivated-btn'} >
+          회원가입
+        </button>
+      </form>
+
+      <Link className='switch' to='/login'> 
+        <p> 이미 아이디가 있으신가요? 로그인하러 가기 </p>
+      </Link>
           
       <div className='error-div'>
         <p className='error'>
