@@ -125,12 +125,12 @@ function Join () {
     return passwordRegex.test(pw);
   };
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     if (!isNicknameValid || !isNicknameUnique || !isEmailCertified || !isPasswordValid) {
       return;
     }
-    createMember(nickname, email, password);
+    await createMember(nickname, email, password);
     window.alert("회원가입이 완료되었습니다.");
     navigate("/login");
   }
