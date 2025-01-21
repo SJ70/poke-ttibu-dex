@@ -2,9 +2,13 @@ import { useState } from 'react';
 import './login.css';
 import { login } from '../api/memberApi';
 import { Link } from 'react-router-dom';
+import { decodeSeals } from '../util/sealsUtil';
+import useSealsStore from '../store/useSealsStore';
 
 function Login () {
     
+  const { setServerSeals, setClientSeals } = useSealsStore();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -46,6 +50,11 @@ function Login () {
     expires.setTime(expires.getTime() + 60 * 60 * 1000);
     document.cookie = `token=${token}; path=/; expires=${expires.toUTCString()}; HttpOnly; SameSite=Strict`;
     // document.cookie = `token=${response.token}; path=/; expires=${expires.toUTCString()}; secure; HttpOnly; SameSite=Strict`;
+
+    // 씰 정보
+    const seals = decodeSeals(response.collectedSeals);
+    setClientSeals(seals);
+    setServerSeals(seals);
   }
 
 }
