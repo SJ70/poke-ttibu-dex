@@ -1,7 +1,8 @@
 .error-div {
     position: absolute;
     width: 100%;
-    bottom: calc(-2em);
+    height: 5em;
+    bottom: -5em;
 }
 
 .error {
@@ -11,15 +12,7 @@
     margin-top: .5em;
 }
 
-.auth-email {
-    margin-left: .25em;
-    font-size: .75em !important;
-    height: 1.6rem !important;
-    padding-left: .5em;
-    padding-right: .5em;
-}
-
-.auth-email {
+.check-btn {
     margin-left: .25em;
     font-size: .75em !important;
     height: 1.6rem !important;

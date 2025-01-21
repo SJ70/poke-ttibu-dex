@@ -11,21 +11,25 @@ function Login () {
             <h2>
                 로그인
             </h2>
-            <label>
-                <p>
-                    이메일
-                </p>
-                <input type='text' placeholder='example@email.com' onChange={(e) => setEmail(e.target.value)} />
-            </label>
-            <label>
-                <p>
-                    비밀번호
-                </p>
-                <input type='password' placeholder='password' onChange={(e) => setPassword(e.target.value)} />
-            </label>
-            <button className={(email !== '' && password !== '') ? 'red-btn' : 'deactivated-btn'} >
-                로그인
-            </button>
+            
+            <form>
+                <label>
+                    <p>
+                        이메일
+                    </p>
+                    <input type='text' placeholder='example@email.com' onChange={(e) => setEmail(e.target.value)} />
+                </label>
+                <label>
+                    <p>
+                        비밀번호
+                    </p>
+                    <input type='password' placeholder='password' onChange={(e) => setPassword(e.target.value)} />
+                </label>
+                <button className={(email !== '' && password !== '') ? 'submit red-btn' : 'submit deactivated-btn'} >
+                    로그인
+                </button>
+            </form>
+            
         </div>
     );
 }

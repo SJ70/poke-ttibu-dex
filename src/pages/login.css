@@ -1,10 +1,13 @@
 .login {
+    position: absolute;
+    transform: translateY(50%);
+    bottom: calc(50% + 4em);
+}
+
+form {
     display: flex;
     flex-direction: column;
     gap: .5em;
-
-    position: absolute;
-    bottom: calc(50%);
 }
 
 .login h2 {
@@ -37,6 +40,9 @@
     font-size: 1em;
 }
 
+.submit{
+    width: 100%;
+}
 
 
 @media (max-width: 768px) {
