@@ -1,6 +1,11 @@
+import { useState } from 'react';
 import './login.css';
 
 function Login () {
+    
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
     return (
         <div className='login'>
             <h2>
@@ -10,15 +15,15 @@ function Login () {
                 <p>
                     이메일
                 </p>
-                <input id='email' type='text' placeholder='example@email.com' />
+                <input id='email' type='text' placeholder='example@email.com' onChange={(e) => setEmail(e.target.value)} />
             </label>
             <label>
                 <p>
                     비밀번호
                 </p>
-                <input id='password' type='text' placeholder='password' />
+                <input id='password' type='password' placeholder='password' onChange={(e) => setPassword(e.target.value)} />
             </label>
-            <button className='submit btn'>
+            <button className={(email === '' || password === '') ? '' : 'activated'} >
                 로그인
             </button>
         </div>

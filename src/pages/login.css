@@ -41,17 +41,28 @@
     width: 80%;
 }
 
+.login label input:focus {
+    border: 1px solid var(--red);
+}
+
 .login button {
     border: 1px solid var(--gray);
     border-radius: .4rem;
     background-color: var(--light-gray);
     color: var(--dark-gray);
-    height: 2em;
-    font-size: .9em;
+    height: 2.5em;
+    font-size: 1em;
 }
 
-.login button:hover {
-    background-color: rgba(0,0,0,.15);
+.activated {
+    background-color: var(--red) !important; 
+    color: var(--white) !important;
+    border-color: var(--white) !important;
+}
+
+.activated:hover {
+    background-color: rgba(255,0,0,.5) !important; 
+    cursor: pointer;
 }
 
 
