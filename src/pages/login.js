@@ -39,10 +39,10 @@ function Login () {
     </div>
   );
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
-    const response = login(email, password);
+    const response = await login(email, password);
 
     // 토큰
     const token = response.token;
