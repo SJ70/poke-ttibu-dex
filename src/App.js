@@ -41,19 +41,19 @@ function App() {
 function Links() {
   return (
     <div className='btns'>
-      <Link className='btn' to='/'>
+      <Link className='red-btn' to='/'>
         <span className="material-symbols-outlined"> collections_bookmark </span>
         <p> 도감 </p>
       </Link>
-      <Link className='btn' to='/market'>
+      <Link className='red-btn' to='/market'>
         <span className="material-symbols-outlined"> store </span>
         <p> 장터 </p>
       </Link>
-      <Link className='btn' to='/message'>
+      <Link className='red-btn' to='/message'>
         <span className="material-symbols-outlined"> mail </span>
         <p> 메시지 </p>
       </Link>
-      <Link className='btn' to='/my-info'>
+      <Link className='red-btn' to='/my-info'>
         <span className="material-symbols-outlined"> account_circle </span>
         <p> 내 정보 </p>
       </Link>

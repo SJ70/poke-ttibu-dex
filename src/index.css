@@ -21,23 +21,20 @@ a {
   color: inherit;
 }
 
-button, input {
-  background-color: inherit;
-  border: inherit;
-}
+
 
 input {
-  font-size: inherit;
+  border: 1px solid var(--gray);
+  border-radius: .4rem;
   outline: none;
 }
-
-.btn:hover {
-  cursor: pointer;
+input:focus {
+  border: 1px solid var(--red);
 }
 
 
 
-/* btn */
+
 
 button {
   padding: 0;
@@ -48,18 +45,19 @@ button {
 .red-btn {
   background-color: var(--red);
   color: var(--white);
-  border: 1px solid var(--white);
+  border: 1px solid rgba(255,255,255,.5);
+  border-radius: .4rem;
 }
 .red-btn:hover {
-    background-color: rgba(255,0,0,.5);
+    background-color: rgba(255,0,0,.25);
     cursor: pointer;
 }
 
 .gray-btn {
-  border-radius: .4rem;
   background-color: var(--light-gray);
   color: var(--dark-gray);
   border: 1px solid var(--gray);
+  border-radius: .4rem;
 }
 .gray-btn:hover {
     background-color: rgba(0,0,0,.1);
@@ -71,6 +69,8 @@ button {
   color: var(--gray);
   border: 1px solid var(--gray);
 }
+
+
 
 
 

@@ -43,22 +43,22 @@ function Seals() {
           </input>
         </div>
 
-        <div className='btn drop-down'>
-          <span class="material-symbols-outlined">
+        <div className='gray-btn drop-down'>
+          <span className="material-symbols-outlined">
             grid_on
           </span>
           <ResizeTable />
         </div>
 
-        <div className='btn drop-down'>
-          <span class="material-symbols-outlined">
+        <div className='gray-btn drop-down'>
+          <span className="material-symbols-outlined">
             filter_alt
           </span>
           <SelectSeries />
         </div>
 
-        <div className='btn drop-down'>
-          <span class="material-symbols-outlined">
+        <div className='gray-btn drop-down'>
+          <span className="material-symbols-outlined">
             sort
           </span>
           <div className='drop-down-elements'>
@@ -172,16 +172,16 @@ function Seals() {
       <div className='resize drop-down-elements'>
         <div className='resize-div'>
           <div className='row-column-cnt'>행의 수 : {rowCnt}</div>
-          <div className='btn little-btn'>
-            <span class="material-symbols-outlined" onClick={() => {
+          <div className='gray-btn little-btn'>
+            <span className="material-symbols-outlined" onClick={() => {
               let value = validateRange(rowCnt - 1, 1, 15);
               setRowCnt(value); 
             }}>
               remove
             </span>
           </div>
-          <div className='btn little-btn'>
-            <span class="material-symbols-outlined" onClick={() => {
+          <div className='gray-btn little-btn'>
+            <span className="material-symbols-outlined" onClick={() => {
               let value = validateRange(rowCnt + 1, 1, 15);
               setRowCnt(value); 
             }}>
@@ -191,16 +191,16 @@ function Seals() {
         </div>
         <div className='resize-div'>
           <div className='row-column-cnt'>열의 수 : {columnCnt}</div>
-          <div className='btn little-btn'>
-            <span class="material-symbols-outlined" onClick={() => {
+          <div className='gray-btn little-btn'>
+            <span className="material-symbols-outlined" onClick={() => {
               let value = validateRange(columnCnt - 1, 1, 15);
               setColumnCnt(value); 
             }}>
               remove
             </span>
           </div>
-          <div className='btn little-btn'>
-            <span class="material-symbols-outlined" onClick={() => {
+          <div className='gray-btn little-btn'>
+            <span className="material-symbols-outlined" onClick={() => {
               let value = validateRange(columnCnt + 1, 1, 15);
               setColumnCnt(value); 
             }}>
@@ -288,8 +288,8 @@ function Seals() {
 
     return (
       <div className='page-control'>
-        <div className='btn' onClick = {() => setPageIdx(Math.max(pageIdx - 1, Math.min(pageCnt, 1)))}>
-          <span class="material-symbols-outlined">
+        <div className='gray-btn' onClick = {() => setPageIdx(Math.max(pageIdx - 1, Math.min(pageCnt, 1)))}>
+          <span className="material-symbols-outlined">
             arrow_back
           </span>
         </div>
@@ -308,8 +308,8 @@ function Seals() {
           </div>
           <PageBtn idx={pageCnt} isSide={true}/>
         </div>
-        <div className='btn' onClick = {() => setPageIdx(Math.min(pageIdx + 1, pageCnt))}>
-          <span class="material-symbols-outlined">
+        <div className='gray-btn' onClick = {() => setPageIdx(Math.min(pageIdx + 1, pageCnt))}>
+          <span className="material-symbols-outlined">
             arrow_forward
           </span>
         </div>
@@ -319,7 +319,7 @@ function Seals() {
 
   function SaveSeals() {
     return (
-      <div className="btn" onClick = {() => {
+      <div className="gray-btn" onClick = {() => {
         let diffs = [];
         for (let i=0; i<SEALS_INFO.length; i++) {
           if (isCollectedAtServer[i] !== isCollected[i]) {
@@ -332,7 +332,7 @@ function Seals() {
         setIsCollectedAtServer(isCollected);
         // todo 서버에 diffs를 전송
       }}>
-        <span class="material-symbols-outlined">
+        <span className="material-symbols-outlined">
           save
         </span>
       </div>

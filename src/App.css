@@ -41,29 +41,23 @@ header .nav-bar .btns {
   gap: .5em;
 }
 
-header .nav-bar .btns .btn {
+header .nav-bar .btns .red-btn {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: .5em;
-  border: 1px solid rgba(255,255,255,.5);
-  border-radius: .4em;
   height: 2em;
   width: 2em;
 }
 
-header .nav-bar .btns .btn span{
+header .nav-bar .btns .red-btn span{
   font-size: 1.25em;
 }
 
-header .nav-bar .btns .btn p{
+header .nav-bar .btns .red-btn p{
   font-size: .75em;
   display: none;
-}
-
-header .nav-bar .btns .btn:hover {
-  background-color: rgba(255,0,0,.25);
 }
 
 
@@ -76,7 +70,7 @@ header .nav-bar .btns .btn:hover {
   padding-left: 1em;
   padding-right: 1em;
 
-  min-height: calc(100svh - 3em - 3em);
+  height: calc(100svh - 3em - 3em - 0.16em);
 }
 
 
@@ -96,8 +90,10 @@ footer .btns {
   justify-content: center;
 }
 
-footer .btn {
+footer .red-btn {
   color: var(--gray);
+  background-color: var(--white);
+  border-radius: 0em;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -108,14 +104,18 @@ footer .btn {
   height: 100%;
 }
 
-footer .btn span{
+footer .red-btn span{
   font-size: 1.5em;
 }
 
-footer .btn p{
+footer .red-btn p{
   display: flex;
   flex-direction: column;
   font-size: .6em;
+}
+
+footer .red-btn:hover {
+  background-color: var(--white);
 }
 
 

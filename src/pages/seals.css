@@ -59,26 +59,20 @@
   padding: .25em;
 }
 
-.control-bar .btn, .page-control .btn {
+.control-bar .gray-btn, .page-control .gray-btn {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: .5em;
-  border: 1px solid var(--gray);
-  background-color: var(--light-gray);
   color: var(--gray);
   border-radius: .4em;
   height: 2em;
   width: 2em;
 }
 
-.control-bar .btn span{
+.control-bar .gray-btn span{
   font-size: 1.25em;
-}
-
-.control-bar .btn:hover {
-  background-color: rgba(0,0,0,.15);
 }
 
 

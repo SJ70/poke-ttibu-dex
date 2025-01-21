@@ -26,39 +26,15 @@
 }
 
 .login label input {
-    border: 1px solid var(--gray);
-    border-radius: .4rem;
-    padding: .25em .5em .25em .5em;
-    flex: 1;
-}
-
-.login label input {
-    border: 1px solid var(--gray);
-    border-radius: .4rem;
     padding: .25em .5em .25em .5em;
     font-size: .9em;
     flex: 1;
     width: 80%;
 }
 
-.login label input:focus {
-    border: 1px solid var(--red);
-}
-
 .login button {
     height: 2.5em;
     font-size: 1em;
-}
-
-.activated {
-    background-color: var(--red) !important; 
-    color: var(--white) !important;
-    border-color: var(--white) !important;
-}
-
-.activated:hover {
-    background-color: rgba(255,0,0,.5) !important; 
-    cursor: pointer;
 }
 
 

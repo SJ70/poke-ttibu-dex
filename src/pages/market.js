@@ -29,12 +29,12 @@ function Market() {
           setFindingSeals(seals);
         }}>
         </input>
-        <div className='select-uncollected btn' onClick={() => {
+        <button className='select-uncollected gray-btn' onClick={() => {
           let seals = SEALS_INFO.filter(seal => !collectedSeals.includes(seal));
           setRequiredSeals(seals);
         }}>
-          없는 씰 모두 선택
-        </div>
+          <p>없는 씰 모두 선택</p>
+        </button>
       </div>
       <FoundSeals />
       <FoundSellers />

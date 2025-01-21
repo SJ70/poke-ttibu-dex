@@ -6,7 +6,7 @@ function Join () {
 
     const [email, setEmail] = useState('');
     const [emailError, setEmailError] = useState('');
-    const [isEmailCertified, setIsEmailCertified] = useState(false);
+    const [isEmailCertified, setIsEmailCertified] = useState(true);
 
     const [password, setPassword] = useState('');
     const [passwordError, setPasswordError] = useState('');
@@ -48,7 +48,7 @@ function Join () {
                 <p>
                     이메일
                 </p>
-                <input id='email' type='text' placeholder='example@email.com' onChange={handleEmailChange}/>
+                <input type='text' placeholder='example@email.com' onChange={handleEmailChange}/>
                 <button className={isEmailCertified ? 'auth-email deactivated gray-btn' : 'auth-email gray-btn'} onClick={handleAuthEmail}>
                     인증
                 </button>
@@ -58,7 +58,7 @@ function Join () {
                 <p>
                     비밀번호
                 </p>
-                <input id='password' type='password' placeholder='password' onChange={handlePasswordChange} />
+                <input type='password' placeholder='password' onChange={handlePasswordChange} />
             </label>
 
             <button className={isEmailCertified && isPasswordValid ? 'red-btn' : 'deactivated-btn'}>
