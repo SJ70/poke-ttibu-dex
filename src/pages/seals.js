@@ -3,12 +3,11 @@ import './seals.css';
 import React, { useEffect, useState } from 'react';
 import { SEALS_INFO } from '../const/sealsInfo';
 import { SERIES_INFO } from '../const/seriesInfo';
+import useSealsStore from '../store/useSealsStore';
 
 function Seals() {
 
-  // todo 초기에 서버에서 사용자의 씰 현황를 받아 옴
-  const [isCollectedAtServer, setIsCollectedAtServer] = useState(Array(SEALS_INFO.length).fill(false));
-  const [isCollected, setIsCollected] = useState([...isCollectedAtServer]);
+  const {serverSeals, clientSeals, setServerSeals, setClientSeals} = useSealsStore();
 
   const [seals, setSeals] = useState(SEALS_INFO);
 
@@ -217,10 +216,10 @@ function Seals() {
     function TableElement({idx, seal}) {
       return (
         <div 
-          className = {isCollected[idx] ? 'seal-cell' : 'seal-cell uncollected'} 
+          className = {clientSeals[idx] ? 'seal-cell' : 'seal-cell uncollected'} 
           onClick = {() => {
-            isCollected[idx] = !isCollected[idx];
-            setIsCollected([...isCollected]);
+            clientSeals[idx] = !clientSeals[idx];
+            setClientSeals([...clientSeals]);
           }}
         >
           <img src={`/images/seals/${seal.code}.png`} alt={seal.name} />
@@ -322,14 +321,14 @@ function Seals() {
       <div className="gray-btn" onClick = {() => {
         let diffs = [];
         for (let i=0; i<SEALS_INFO.length; i++) {
-          if (isCollectedAtServer[i] !== isCollected[i]) {
+          if (serverSeals[i] !== clientSeals[i]) {
             diffs.push({
               idx: i,
-              count: isCollected[i] - isCollectedAtServer[i],
+              count: clientSeals[i] - serverSeals[i],
             });
           }
         }
-        setIsCollectedAtServer(isCollected);
+        setServerSeals(clientSeals);
         // todo 서버에 diffs를 전송
       }}>
         <span className="material-symbols-outlined">
