@@ -1,7 +1,7 @@
 import './login.css';
 import './join.css';
 import { useState } from 'react';
-import { createMember } from '../api/memberApi';
+import { createMember, isNicknameExists } from '../api/memberApi';
 import { Link, useNavigate } from 'react-router-dom';
 
 function Join () {
@@ -30,7 +30,7 @@ function Join () {
           <p> 닉네임 </p>
           <input type='text' placeholder='nickname' onChange={handleNicknameChange} />
           <button className={!isNicknameUnique ? 'check-btn red-btn' : 'check-btn deactivated-btn'} onClick={handleCheckNicknameExists}>
-            중복 확인
+            {isNicknameUnique ? '사용 가능' : '중복 확인'}
           </button>
         </label>
 
@@ -87,13 +87,18 @@ function Join () {
       setNicknameError('닉네임은 3자 이상 10자 이하의 한글, 영어, 숫자로 이루어져야 합니다.');
     }
   };
-  function handleCheckNicknameExists(event) {
+  async function handleCheckNicknameExists(event) {
     event.preventDefault();
     if (!isNicknameValid) {
         return;
     }
-    // 닉네임 중복 확인
+    if (await isNicknameExists(nickname)) {
+      setIsNicknameUnique(false);
+      setNicknameError('이미 존재하는 닉네임입니다.');
+      return;
+    }
     setIsNicknameUnique(true);
+    setNicknameError('');
   }
 
   function handleEmailChange(event) {
@@ -112,12 +117,12 @@ function Join () {
     let value = event.target.value;
     setPassword(value);
     if (validatePassword(value)) {
-        setIsPasswordValid(true);
-        setPasswordError('');
+      setIsPasswordValid(true);
+      setPasswordError('');
     }
     else {
-        setIsPasswordValid(false);
-        setPasswordError('비밀번호는 8자 이상 16자 이하의 영문자와 숫자로 이루어져야 합니다.');
+      setIsPasswordValid(false);
+      setPasswordError('비밀번호는 8자 이상 16자 이하의 영문자와 숫자로 이루어져야 합니다.');
     }
   };
   function validatePassword(pw) {
