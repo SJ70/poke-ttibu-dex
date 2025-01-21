@@ -29,7 +29,7 @@ function Join () {
         <label>
           <p> 닉네임 </p>
           <input type='text' placeholder='nickname' onChange={handleNicknameChange} />
-          <button className={!isNicknameUnique ? 'check-btn red-btn' : 'check-btn deactivated-btn'} onClick={handleCheckNicknameExists}>
+          <button className={isNicknameValid && !isNicknameUnique ? 'check-btn red-btn' : 'check-btn deactivated-btn'} onClick={handleCheckNicknameExists}>
             {isNicknameUnique ? '사용 가능' : '중복 확인'}
           </button>
         </label>
@@ -90,7 +90,7 @@ function Join () {
   async function handleCheckNicknameExists(event) {
     event.preventDefault();
     if (!isNicknameValid) {
-        return;
+      return;
     }
     if (await isNicknameExists(nickname)) {
       setIsNicknameUnique(false);
