@@ -1,7 +1,7 @@
 import './login.css';
 import './join.css';
 import { useState } from 'react';
-import { createMember, isNicknameExists } from '../api/memberApi';
+import { createMember, isNicknameExists, isEmailExists } from '../api/memberApi';
 import { Link, useNavigate } from 'react-router-dom';
 
 function Join () {
@@ -106,11 +106,16 @@ function Join () {
     setEmail(value);
     setIsEmailCertified(false);
   };
-  function handleAuthEmail(event) {
+  async function handleAuthEmail(event) {
     event.preventDefault();
-    // 이메일 중복 확인
+    if (await isEmailExists(email)) {
+      setIsEmailCertified(false);
+      setEmailError('이미 등록된 이메일입니다.');
+      return;
+    }
     // 이메일 인증
     setIsEmailCertified(true);
+    setEmailError('');
   };
 
   function handlePasswordChange(event) {
