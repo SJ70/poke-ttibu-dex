@@ -56,6 +56,10 @@ form {
   padding: .5em 0 .5em 0;
 }
 
+.switch:hover {
+  text-decoration: underline;
+}
+
 
 @media (max-width: 768px) {
   .login {
