@@ -84,7 +84,7 @@ function Join () {
       setNicknameError('');
     }
     else {
-      setNicknameError('닉네임은 3자 이상 10자 이하의 한글, 영어, 숫자로 이루어져야 합니다.');
+      setNicknameError('닉네임은 3~10자의 한글/영어/숫자로 이루어져야 합니다.');
     }
   };
   async function handleCheckNicknameExists(event) {
@@ -127,7 +127,7 @@ function Join () {
     }
     else {
       setIsPasswordValid(false);
-      setPasswordError('비밀번호는 8자 이상 16자 이하의 영문자와 숫자로 이루어져야 합니다.');
+      setPasswordError('비밀번호는 8~16의 영문자+숫자로 이루어져야 합니다.');
     }
   };
   function validatePassword(pw) {
