@@ -46,10 +46,6 @@
 }
 
 .login button {
-    border: 1px solid var(--gray);
-    border-radius: .4rem;
-    background-color: var(--light-gray);
-    color: var(--dark-gray);
     height: 2.5em;
     font-size: 1em;
 }

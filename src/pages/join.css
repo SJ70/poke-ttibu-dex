@@ -1,0 +1,37 @@
+.error-div {
+    position: absolute;
+    width: 100%;
+    bottom: calc(-2em);
+}
+
+.error {
+    font-size: .5em;
+    text-align: end;
+    color: var(--red);
+    margin-top: .5em;
+}
+
+.auth-email {
+    margin-left: .25em;
+    font-size: .75em !important;
+    height: 1.6rem !important;
+    padding-left: .5em;
+    padding-right: .5em;
+}
+
+.auth-email {
+    margin-left: .25em;
+    font-size: .75em !important;
+    height: 1.6rem !important;
+    padding-left: .5em;
+    padding-right: .5em;
+}
+
+.auth-email:hover {
+    background-color: rgba(0,0,0,.1);
+    cursor: pointer;
+}
+
+.auth-email:hover & .deactivated {
+    cursor: none;
+}

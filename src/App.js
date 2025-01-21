@@ -5,6 +5,7 @@ import Seals from './pages/seals.js';
 import MyInfo from './pages/myInfo.js';
 import Message from './pages/message.js';
 import Login from './pages/login.js';
+import Join from './pages/join.js';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Seals />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/join" element={<Join />} />
             <Route path="/market" element={<Market />} />
             <Route path="/message" element={<Message />} />
             <Route path="/my-info" element={<MyInfo />} />
