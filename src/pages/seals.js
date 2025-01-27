@@ -3,11 +3,10 @@ import './seals.css';
 import React, { useEffect, useState } from 'react';
 import { SEALS_INFO } from '../const/sealsInfo';
 import { SERIES_INFO } from '../const/seriesInfo';
-import useSealsStore from '../store/useSealsStore';
 
 function Seals() {
 
-  const {serverSeals, clientSeals, setServerSeals, setClientSeals} = useSealsStore();
+  const [collectedSeals, setCollectedSeals] = useState(Array(SEALS_INFO.length).fill(false));
 
   const [seals, setSeals] = useState(SEALS_INFO);
 
@@ -67,8 +66,6 @@ function Seals() {
           </div>
         </div>
         
-        <SaveSeals />
-
       </div>
 
       <div className='table-wrapper'>
@@ -216,10 +213,10 @@ function Seals() {
     function TableElement({idx, seal}) {
       return (
         <div 
-          className = {clientSeals[idx] ? 'seal-cell' : 'seal-cell uncollected'} 
+          className = {collectedSeals[idx] ? 'seal-cell' : 'seal-cell uncollected'} 
           onClick = {() => {
-            clientSeals[idx] = !clientSeals[idx];
-            setClientSeals([...clientSeals]);
+            collectedSeals[idx] = !collectedSeals[idx];
+            setCollectedSeals([...collectedSeals]);
           }}
         >
           <img src={`/images/seals/${seal.code}.png`} alt={seal.name} />
@@ -315,29 +312,6 @@ function Seals() {
       </div>
     );
   }
-
-  function SaveSeals() {
-    return (
-      <div className="gray-btn" onClick = {() => {
-        let diffs = [];
-        for (let i=0; i<SEALS_INFO.length; i++) {
-          if (serverSeals[i] !== clientSeals[i]) {
-            diffs.push({
-              idx: i,
-              count: clientSeals[i] - serverSeals[i],
-            });
-          }
-        }
-        setServerSeals(clientSeals);
-        // todo 서버에 diffs를 전송
-      }}>
-        <span className="material-symbols-outlined">
-          save
-        </span>
-      </div>
-    );
-  }
-
 }
 
 function validateRange(value, min, max) {

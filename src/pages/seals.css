@@ -222,13 +222,7 @@ table img {
 
 @media (max-width: 768px) {
   .table-wrapper {
-    max-height: calc(100svh - 4em - 3em - 4em - 2em);
-  }
-
-  .page-control {
-    bottom: calc(1em + 3em);
-    width: calc(100% - 2em);
-    left: calc(1em);
+    max-height: calc(100svh - 4em - 2em - 4em);
   }
 }
 

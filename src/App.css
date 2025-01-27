@@ -136,25 +136,16 @@ footer .red-btn:hover {
   body {
     min-height: calc(100svh - 3em - 3em);
   }
-  footer {
-    height: 3em;
-  }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
   header .nav-bar, .page > div {
     width: 768px;
   }
-  footer {
-    display: none;
-  }
 }
 
 @media (min-width: 1025px) {
   header .nav-bar, .page > div {
     width: 1024px;
-  }
-  footer {
-    display: none;
   }
 }
