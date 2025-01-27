@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './login.css';
 import { login } from '../api/memberApi';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { decodeSeals } from '../util/sealsUtil';
 import useSealsStore from '../store/useSealsStore';
 
@@ -11,6 +11,8 @@ function Login () {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
 
   return (
     <div className='login'>
@@ -55,6 +57,8 @@ function Login () {
     const seals = decodeSeals(response.collectedSeals);
     setClientSeals(seals);
     setServerSeals(seals);
+
+    navigate('/');
   }
 
 }
