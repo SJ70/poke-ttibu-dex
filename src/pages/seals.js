@@ -3,10 +3,11 @@ import './seals.css';
 import React, { useEffect, useState } from 'react';
 import { SEALS_INFO } from '../const/sealsInfo';
 import { SERIES_INFO } from '../const/seriesInfo';
+import { loadSeals, updateSeal } from '../localStorage/localStorage';
 
 function Seals() {
 
-  const [collectedSeals, setCollectedSeals] = useState(Array(SEALS_INFO.length).fill(false));
+  const [collectedSeals, setCollectedSeals] = useState(loadSeals());
 
   const [seals, setSeals] = useState(SEALS_INFO);
 
@@ -215,7 +216,9 @@ function Seals() {
         <div 
           className = {collectedSeals[idx] ? 'seal-cell' : 'seal-cell uncollected'} 
           onClick = {() => {
-            collectedSeals[idx] = !collectedSeals[idx];
+            const bool = !collectedSeals[idx]
+            collectedSeals[idx] = bool;
+            updateSeal(seal.idx, bool);
             setCollectedSeals([...collectedSeals]);
           }}
         >
