@@ -8,6 +8,7 @@ import { loadSeals, updateSeal } from '../localStorage/localStorage';
 function Seals() {
 
   const [collectedSeals, setCollectedSeals] = useState(loadSeals());
+  const [collectedSealCountPerSeries, setCollectedSealCountPerSeries] = useState(initSealCountPerSeries());
 
   const [seals, setSeals] = useState(SEALS_INFO);
 
@@ -98,6 +99,9 @@ function Seals() {
           />
           <p className='series-title'>
             {SERIES_INFO[i].title}
+          </p>
+          <p className='seal-count-per-series'>
+            {collectedSealCountPerSeries[i]} / {SERIES_INFO[i].count}
           </p>
           <p className='series-release'>
             {SERIES_INFO[i].release} 출시
@@ -218,8 +222,12 @@ function Seals() {
           onClick = {() => {
             const bool = !collectedSeals[idx]
             collectedSeals[idx] = bool;
-            updateSeal(seal.idx, bool);
             setCollectedSeals([...collectedSeals]);
+
+            collectedSealCountPerSeries[seal.series] += (bool ? 1 : -1);
+            setCollectedSealCountPerSeries([...collectedSealCountPerSeries]);
+            
+            updateSeal(seal.idx, bool);
           }}
         >
           <img src={`/images/seals/${seal.code}.png`} alt={seal.name} />
@@ -315,6 +323,19 @@ function Seals() {
       </div>
     );
   }
+
+  
+
+  function initSealCountPerSeries() {
+    const arr = Array(SERIES_INFO.length).fill(0);
+    for (let i=0; i<SEALS_INFO.length; i++) {
+      if (collectedSeals[i]) {
+        arr[SEALS_INFO[i].series]++;
+      }
+    }
+    return arr;
+  }
+
 }
 
 function validateRange(value, min, max) {

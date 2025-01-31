@@ -46,7 +46,7 @@
 }
 
 .select-series {
-  min-width: 18em;
+  min-width: 22em;
 }
 
 .sort {
@@ -120,6 +120,11 @@
 .series-title {
   color: black;
   flex: 1;
+}
+
+.seal-count-per-series {
+  font-size: .8em;
+  color: var(--red);
 }
 
 .series-release {
