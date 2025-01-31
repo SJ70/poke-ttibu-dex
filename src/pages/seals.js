@@ -230,7 +230,7 @@ function Seals() {
             updateSeal(seal.idx, bool);
           }}
         >
-          <img src={`/images/seals/${seal.code}.png`} alt={seal.name} />
+          <img src={`./images/seals/${seal.code}.png`} alt={seal.name} />
           {/* <p> no. {seal.no} </p>
           <p> {seal.name} </p>
           <p> {SERIES_INFO[seal.series].title} </p> */}
@@ -240,7 +240,7 @@ function Seals() {
     function EmptyElement() {
       return (
         <div className='seal-cell uncollected'>
-          <img src={`/images/seals/null.png`} alt={'empty'} />
+          <img src={`./images/seals/null.png`} alt={'empty'} />
         </div>
       );
     }
