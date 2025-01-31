@@ -218,10 +218,10 @@ function Seals() {
     function TableElement({idx, seal}) {
       return (
         <div 
-          className = {collectedSeals[idx] ? 'seal-cell' : 'seal-cell uncollected'} 
+          className = {collectedSeals[seal.idx] ? 'seal-cell' : 'seal-cell uncollected'} 
           onClick = {() => {
-            const bool = !collectedSeals[idx]
-            collectedSeals[idx] = bool;
+            const bool = !collectedSeals[seal.idx]
+            collectedSeals[seal.idx] = bool;
             setCollectedSeals([...collectedSeals]);
 
             collectedSealCountPerSeries[seal.series] += (bool ? 1 : -1);
