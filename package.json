@@ -19,7 +19,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://sj70.github.io/poke-ttibu-dex-frontend/",
+  "homepage": "https://sj70.github.io/poke-ttibu-dex/",
 
   "eslintConfig": {
     "extends": [
