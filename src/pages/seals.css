@@ -34,6 +34,8 @@
   font-size: .9em;
 }
 
+
+
 .drop-down:hover div {
   display: flex;
   z-index: 10;
@@ -41,6 +43,14 @@
 
 .drop-down div {
   display: none;
+}
+
+.select-series {
+  min-width: 18em;
+}
+
+.sort {
+  min-width: 7.5em;
 }
 
 .drop-down-elements {
@@ -52,12 +62,14 @@
   border: 1px solid var(--gray);
 
   position: absolute;
-  transform: translate(calc(-50% + 1.1rem), calc(50% + 1rem));
+  transform: translate(calc(-50% + 1.05rem), calc(50% + 1rem));
   border-radius: .4em;
   font-size: 1rem;
 
   padding: .25em;
 }
+
+
 
 .control-bar .gray-btn, .page-control .gray-btn {
   display: flex;

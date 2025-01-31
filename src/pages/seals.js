@@ -60,7 +60,7 @@ function Seals() {
           <span className="material-symbols-outlined">
             sort
           </span>
-          <div className='drop-down-elements'>
+          <div className='sort drop-down-elements'>
             <SortRadio value={'series'} text={'시리즈 순'} />
             <SortRadio value={'no'} text={'번호 순'} />
             <SortRadio value={'name'} text={'이름 순'} />
@@ -105,7 +105,7 @@ function Seals() {
         </label>
       );
     }
-    return <div className='drop-down-elements'>{rows}</div>;
+    return <div className='select-series drop-down-elements'>{rows}</div>;
   }
 
   function SortRadio({value, text}) {
