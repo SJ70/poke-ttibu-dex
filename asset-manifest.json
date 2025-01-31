@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/poke-ttibu-dex/static/css/main.8a42750b.css",
-    "main.js": "/poke-ttibu-dex/static/js/main.61dd5c50.js",
+    "main.js": "/poke-ttibu-dex/static/js/main.fa09c1e6.js",
     "static/media/NanumSquareL.ttf": "/poke-ttibu-dex/static/media/NanumSquareL.ace03365daa3d33bdec6.ttf",
     "static/media/NanumSquareB.ttf": "/poke-ttibu-dex/static/media/NanumSquareB.ebe0aa17b7967cd61f16.ttf",
     "static/media/NanumSquareEB.ttf": "/poke-ttibu-dex/static/media/NanumSquareEB.e54714432fdd6e1724a7.ttf",
     "static/media/NanumSquareR.ttf": "/poke-ttibu-dex/static/media/NanumSquareR.924c33f60f994924964c.ttf",
     "index.html": "/poke-ttibu-dex/index.html",
     "main.8a42750b.css.map": "/poke-ttibu-dex/static/css/main.8a42750b.css.map",
-    "main.61dd5c50.js.map": "/poke-ttibu-dex/static/js/main.61dd5c50.js.map"
+    "main.fa09c1e6.js.map": "/poke-ttibu-dex/static/js/main.fa09c1e6.js.map"
   },
   "entrypoints": [
     "static/css/main.8a42750b.css",
-    "static/js/main.61dd5c50.js"
+    "static/js/main.fa09c1e6.js"
   ]
 }
