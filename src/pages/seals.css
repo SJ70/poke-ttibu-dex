@@ -178,6 +178,7 @@ table img {
   border-radius: .4rem;
   overflow: hidden;
   background-color: white;
+  cursor: pointer;
 }
 
 .page-control {
